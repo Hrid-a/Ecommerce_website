@@ -1,0 +1,133 @@
+.form {
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: var(--clr-neutral-500);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+
+    p {
+        margin-block-start: 1rem;
+
+        a {
+            color: var(--clr-neutral-700);
+            transition: color 300ms ease-in-out;
+
+            &:hover {
+                color: var(--clr-primary);
+            }
+        }
+    }
+}
+
+.error {
+    color: tomato;
+
+}
+
+.inputFile {
+    position: relative;
+
+    .length {
+        position: absolute;
+        top: 0;
+        right: -7px;
+        width: 25px;
+        aspect-ratio: 1;
+        background-color: var(--clr-primary);
+        color: var(--clr-neutral-500);
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+    }
+}
+
+.form-group {
+    margin-bottom: 8px;
+    padding: 8px;
+    text-transform: capitalize;
+
+    .form-fieldGroupLabel {
+        width: 100%;
+        margin-bottom: 8px;
+        padding-inline: 8px;
+        color: var(--clr-neutral-300);
+    }
+
+    .form-fieldGroupInput {
+        width: 100%;
+    }
+
+    select,
+    textarea,
+    input {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        border: 1px solid var(--clr-neutral-600);
+        transition: border 200ms ease-in-out;
+
+        &:focus {
+            border: 3px solid var(--clr-primary);
+            outline: none;
+        }
+    }
+
+    select {
+        text-transform: capitalize;
+
+        option {
+            padding: 10px 15px;
+            height: 20px;
+            text-transform: capitalize;
+            cursor: pointer;
+        }
+    }
+
+    label.label input[type="file"] {
+        opacity: 0;
+        flex: 2;
+    }
+
+    .label {
+        cursor: pointer;
+        width: 100%;
+        border: 1px solid var(--clr-neutral-600);
+        border-radius: 10px;
+        margin: 8px;
+        display: flex;
+        position: relative;
+
+        &::before {
+            cursor: pointer;
+            content: "choose an image ...";
+            font-size: 0.9rem;
+            color: var(--clr-neutral-300);
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+        }
+
+        span {
+
+            padding: 0.5rem 1rem;
+            border-left: 1px solid var(--clr-neutral-600);
+            flex: 1;
+        }
+
+    }
+
+}
+
+.forgotPassword {
+    font-size: 1rem;
+    color: var(--clr-primary);
+    text-align: end;
+    margin: 0.8rem 0.3rem;
+
+    a {
+        color: inherit;
+        text-transform: capitalize;
+    }
+}

@@ -1,0 +1,34 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Public+Sans:wght@400;500&display=swap');
+
+:root {
+
+    @each $shade,
+    $shade-map in $shades {
+
+        @each $color,
+        $val in $shade-map {
+            @if $shade ==default {
+                --clr-#{$color}: #{$val};
+            }
+        }
+    }
+
+    --ff-primary: 'DM Serif Display',
+    serif;
+    --ff-secondary: 'Public Sans',
+    sans-serif;
+
+
+    --gradient-bg: linear-gradient(145deg, #e2e8ec, #ffffff);
+    --gradient-hover: linear-gradient(145deg, #f2c94c, #f7bd0f);
+}
+
+
+body {
+    background-image: linear-gradient(180deg, #f1f2f2 0%, #FFFFFF 100%);
+    font-family: var(--ff-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+}

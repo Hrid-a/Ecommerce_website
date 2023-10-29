@@ -1,0 +1,39 @@
+@use "sass:meta";
+@use "sass:math";
+@use "sass:map";
+@use "./breakpoints" as *;
+
+
+@mixin mediaquery($size) {
+
+    @if map.has-key($breakpoints, $size) {
+        $breakpoint: map-get($breakpoints, $size);
+
+        @media screen and (min-width: $breakpoint) {
+            @content;
+        }
+    }
+
+    @else if meta.type-of($size)==number {
+        @if math.is-unitless($size) {
+            @error 'when using a number with @mq() make sure to include a unit';
+        }
+
+        @else {
+            @media screen and (min-width: $size) {
+                @content;
+            }
+        }
+    }
+
+    @else {
+        @error "This not a media query";
+    }
+}
+
+
+@mixin flex_group($content: start, $align: center) {
+    display: flex;
+    justify-content: $content;
+    align-items: $align;
+}

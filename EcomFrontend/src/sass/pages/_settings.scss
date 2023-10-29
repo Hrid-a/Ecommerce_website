@@ -1,0 +1,43 @@
+@use "../abstracts/mixins" as *;
+
+.settings {
+
+    .form {
+        max-width: 750px;
+    }
+
+    .flex {
+        @include flex_group(flex-start, flex-start);
+        gap: 2rem;
+    }
+
+    .inputs {
+        flex: 4;
+    }
+
+    .image-container {
+        max-width: 250px;
+        flex: 2;
+        position: relative;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    .input-file {
+        visibility: hidden;
+    }
+
+    .input-span {
+        position: absolute;
+        bottom: 13px;
+        left: -16px;
+        background-color: #ffffffc9;
+        display: block;
+        padding: 0.3rem 1rem;
+        border-radius: 10px;
+        z-index: 12;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,32 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.container {
+    --spacer: 1.5rem;
+    width: 100%;
+    padding-inline: var(--spacer, 1.5rem);
+    margin: 0 auto;
+
+    @include mediaquery(576px) {
+        max-width: 540px;
+    }
+
+    @include mediaquery(768px) {
+        max-width: 720px;
+    }
+
+    @include mediaquery(992px) {
+        max-width: 960px;
+    }
+
+    @include mediaquery(1200px) {
+        max-width: 1140px;
+    }
+
+    @include mediaquery(1400px) {
+        max-width: 1320px;
+    }
+
+
+
+}

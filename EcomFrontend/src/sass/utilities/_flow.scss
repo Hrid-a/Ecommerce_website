@@ -1,0 +1,7 @@
+.flow>*:where(:not(:first-child)) {
+    margin-top: var(--spacer-flow, 1.3rem);
+}
+
+.section {
+    padding: 4rem 2rem;
+}

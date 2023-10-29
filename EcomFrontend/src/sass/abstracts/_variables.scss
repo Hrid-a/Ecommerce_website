@@ -1,0 +1,28 @@
+$ast-global-color-0: #c19a83;
+$ast-global-color-1: #000000;
+$ast-global-color-2: #000000;
+$ast-global-color-3: rgba(0, 0, 0, 0.61);
+$ast-global-color-4: #f1f2f2;
+$ast-global-color-5: #FFFFFF;
+$ast-global-color-6: rgba(0, 0, 0, 0.07);
+$ast-global-color-7: #424242;
+$ast-global-color-8: #000000;
+$shades: (
+    default:("primary" : $ast-global-color-0,
+        "neutral-100": $ast-global-color-1,
+        "neutral-200": $ast-global-color-2,
+        "neutral-300": $ast-global-color-3,
+        "neutral-400": $ast-global-color-4,
+        "neutral-500": $ast-global-color-5,
+        "neutral-600": $ast-global-color-6,
+        "neutral-700": $ast-global-color-7,
+    ),
+
+);
+
+
+// Shadows and gradients
+
+$gradient-box-w: linear-gradient(145deg, #e2e8ec, #ffffff);
+$gradient-gold-hover: linear-gradient(145deg, #f2c94c, #f7bd0f);
+$background-color-1: linear-gradient(145deg, #1e2024, #23272b);

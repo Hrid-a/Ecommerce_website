@@ -1,0 +1,42 @@
+@use "../abstracts/mixins" as *;
+
+.contact-section {
+
+    .contacts {
+        padding-block: 1.3rem;
+
+        @include mediaquery(small) {
+            @include flex_group(center, center);
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        article {
+            @media screen and (max-width: 768px) {
+                margin-bottom: 1rem;
+            }
+
+            box-shadow: 15px 15px 10px rgba(0, 0, 0, .05);
+            border-radius: 10px;
+            background-color: var(--clr-neutral-500);
+            padding: 1rem 2rem 2rem;
+
+
+            .icon {
+                font-size: 2rem;
+                color: var(--clr-primary);
+            }
+
+            div {
+                @include flex_group(center, center);
+                flex-direction: column;
+                padding: 1rem;
+            }
+        }
+    }
+
+}
+
+.get-in-touch {
+    margin-block: 2rem 1rem;
+}

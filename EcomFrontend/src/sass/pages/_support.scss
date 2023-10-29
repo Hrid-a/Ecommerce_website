@@ -1,0 +1,93 @@
+@use "../abstracts/mixins" as *;
+
+.support-section {
+
+    .support {
+        padding-block: 1.3rem;
+        display: grid;
+        gap: 2rem;
+
+        @include mediaquery(small) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include mediaquery(medium) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        article {
+            @media screen and (max-width: 768px) {
+                margin-bottom: 1rem;
+            }
+
+            box-shadow: 15px 15px 10px rgba(0, 0, 0, .05);
+
+            background-color: var(--clr-neutral-500);
+            padding: 1rem 2rem 2rem;
+            border-radius: 10px;
+
+            .icon {
+                font-size: 2rem;
+                color: var(--clr-primary);
+            }
+
+            div {
+                @include flex_group(center, center);
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .link {
+                color: var(--clr-primary);
+                @include flex_group(center, center);
+                gap: 0.5rem;
+            }
+        }
+    }
+
+    .faq {
+        margin-top: 2rem;
+    }
+
+    .accordion {
+        max-width: 600px;
+        margin-inline: auto;
+
+        &__title {
+            @include flex_group(space-between, center);
+            cursor: pointer;
+            transition: color 200ms ease-in-out;
+
+            &.show {
+                color: var(--clr-primary);
+            }
+        }
+
+        &__content {
+            border: 1px solid #ccc;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        &__desc {
+            overflow: hidden;
+            height: 0;
+            transition: height 0.3s ease-in-out;
+
+            &.show {
+                height: fit-content;
+                -webkit-transition: height 0.5s ease-in-out;
+                transition: height 0.5s ease-in-out;
+            }
+
+            p {
+                font-style: normal;
+                color: #777;
+                padding: 20px;
+                text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+
+    }
+}

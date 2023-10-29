@@ -1,0 +1,207 @@
+@use "../abstracts/mixins" as *;
+
+.product {
+    padding: 20px 50px;
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+
+    @include mediaquery(small) {
+        flex-direction: row;
+
+
+    }
+
+    .left {
+        flex: 1;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+
+        @include mediaquery(small) {
+            flex-direction: row;
+        }
+
+        .images {
+            flex: 2;
+            background-color: var(--clr-neutral-500);
+            padding: 10px;
+            border-radius: 10px;
+
+            @include mediaquery(small) {
+                order: 0;
+            }
+
+            img {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                cursor: pointer;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+        }
+
+        .mainImg {
+            order: 0;
+            flex: 5;
+            padding: 0.2rem;
+            background: var(--clr-neutral-500);
+            height: max-content;
+            border-radius: 10px;
+
+            @include mediaquery(small) {
+                order: 1;
+            }
+
+            img {
+                width: 100%;
+                height: 500px;
+                max-height: 600px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        @include mediaquery(small) {
+            order: 1;
+        }
+
+        .price {
+            font-size: 30px;
+            color: var(--clr-primary);
+            font-weight: 500;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            button {
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                border: none;
+            }
+        }
+
+        .add {
+            width: 250px;
+            padding: 10px;
+            background-color: #2879fe;
+            color: white;
+            @include flex_group(center, center);
+            gap: 15px;
+            cursor: pointer;
+            border: none;
+            font-weight: 500;
+            border-radius: 10px;
+        }
+
+        .links {
+            display: flex;
+            gap: 15px;
+
+            .item {
+                @include flex_group(start, center);
+                gap: 10px;
+                color: #2879fe;
+                font-size: 14px;
+            }
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: gray;
+            font-size: 14px;
+
+            hr {
+                width: 200px;
+                border: 1px solid rgb(238, 237, 237);
+            }
+        }
+
+        hr {
+            border: 1px solid rgb(238, 237, 237);
+        }
+
+    }
+}
+
+.reviews {
+    margin-block: 1rem;
+    padding: 1rem;
+    margin-inline: auto;
+    max-width: 600px;
+    border: 3px solid var(--clr-neutral-500);
+    border-radius: 10px;
+    @include flex_group(center, flex-start);
+    flex-direction: column;
+    gap: 2rem;
+    color: var(--clr-neutral-700);
+
+    &__heading {
+        padding-left: 1rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--clr-neutral-100);
+    }
+
+    &__rating {
+        background-color: var(--clr-neutral-500);
+        padding: 0.2rem 0.5rem;
+        border-radius: 10px;
+        width: fit-content;
+        @include flex_group(flex-start, center);
+        gap: 0.6rem;
+    }
+
+    &__comment {
+        font-size: 1rem;
+        line-height: 1.4;
+        color: var(--clr-neutral-700);
+    }
+
+
+
+
+    div {
+        display: grid;
+        gap: 1rem;
+        width: 100%;
+        padding-bottom: 1em;
+        border-bottom: 1px solid var(--clr-primary);
+
+        section {
+            @include flex_group(flex-start, center);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+
+.filled,
+.outlined {
+    color: gold;
+    cursor: pointer;
+}

@@ -1,0 +1,17 @@
+@use "../abstracts/mixins" as *;
+
+.title-container {
+    @include flex_group(center, center);
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+
+    .title {
+        text-transform: capitalize;
+    }
+
+    .title+p {
+        color: var(--clr-neutral-300);
+        font-size: 0.85rem;
+    }
+}

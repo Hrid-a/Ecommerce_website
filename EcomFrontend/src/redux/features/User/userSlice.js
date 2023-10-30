@@ -31,9 +31,17 @@ export const userLogOut = createAsyncThunk("auth/userLogOut", async (_, { reject
     }
 });
 
-export const deleteUser = createAsyncThunk("user/deleteUser", async (id, { rejectWithValue }) => {
+export const deleteUser = createAsyncThunk("user/deleteUser", async (id, { rejectWithValue, getState }) => {
+    const token = getState().user.token;
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            // Other headers and data
+        },
+    }
+
     try {
-        const { data } = await req.delete(`/admin/user/${id}`);
+        const { data } = await req.delete(`/admin/user/${id}`, config);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message || "something wrong happened";
@@ -41,9 +49,16 @@ export const deleteUser = createAsyncThunk("user/deleteUser", async (id, { rejec
     }
 })
 
-export const updateUser = createAsyncThunk("user/updateUser", async (formData, { rejectWithValue }) => {
+export const updateUser = createAsyncThunk("user/updateUser", async (formData, { rejectWithValue, getState }) => {
+    const token = getState().user.token;
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            // Other headers and data
+        },
+    }
     try {
-        const { data } = await req.put("/user/update", formData);
+        const { data } = await req.put("/user/update", formData, config);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message || "something went Wrong";
@@ -61,9 +76,16 @@ export const forgotPass = createAsyncThunk("user/forgotPass", async (emailData, 
     }
 })
 
-export const changePassword = createAsyncThunk("user/changePassword", async (userData, { rejectWithValue }) => {
+export const changePassword = createAsyncThunk("user/changePassword", async (userData, { rejectWithValue, getState }) => {
+    const token = getState().user.token;
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            // Other headers and data
+        },
+    }
     try {
-        const { data } = await req.put("/password/update", userData);
+        const { data } = await req.put("/password/update", userData, config);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message;
@@ -203,7 +225,7 @@ const authSlice = createSlice({
         }
 });
 
-
+export const selectUserToken = (state) => state.user.token;
 export const { handleError } = authSlice.actions;
 export default authSlice.reducer;
 

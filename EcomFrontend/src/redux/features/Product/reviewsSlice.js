@@ -1,9 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { req } from "../../../utils/axios";
+import { selectUserToken } from "../User/userSlice";
 
-export const addReview = createAsyncThunk("review/addReview", async (reviewData, { rejectWithValue }) => {
+export const addReview = createAsyncThunk("review/addReview", async (reviewData, { rejectWithValue, getState }) => {
+    const token = selectUserToken(getState());
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            // Other headers and data
+        },
+    }
     try {
-        const { data } = await req.post("/review", reviewData);
+        const { data } = await req.post("/review", reviewData, config);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message;

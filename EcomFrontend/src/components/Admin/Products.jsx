@@ -35,7 +35,7 @@ const Products = () => {
             headerName: 'Created At',
             width: 180,
             renderCell: (params) =>
-                moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+                moment(params.row?.createdAt).format('YYYY-MM-DD HH:MM:SS'),
         },
         {
             field: 'stock',

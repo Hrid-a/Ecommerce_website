@@ -23,7 +23,7 @@ const ProductActions = ({ params }) => {
 
 
         <div className="action">
-            <Link to={"/admin/product/" + params.id} className='link'>
+            <Link to={"/admin/product/" + params?.id} className='link'>
                 <FaEdit />
             </Link>
 

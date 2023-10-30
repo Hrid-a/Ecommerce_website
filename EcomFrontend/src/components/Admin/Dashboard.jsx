@@ -1,5 +1,5 @@
 import ChartBox from "../ui/ChartBox.jsx";
-import BarChart from "../ui/BarChart.jsx";
+import BarChartBox from "../ui/BarChartBox.jsx";
 import { FaUsers, FaSellsy } from "react-icons//fa";
 import {
     chartBoxUser,
@@ -16,8 +16,8 @@ const Dashboard = () => {
                     <ChartBox {...chartBoxUser} icon={<FaUsers />} />
                 </article>
                 <article className="cart__box"> <ChartBox {...chartBoxProduct} icon={<FaSellsy />} /> </article>
-                <article> <BarChart {...barChartBoxVisit} /> </article>
-                <article> <BarChart {...barChartBoxRevenue} /> </article>
+                <article> <BarChartBox {...barChartBoxVisit} /> </article>
+                <article> <BarChartBox {...barChartBoxRevenue} /> </article>
             </section>
         </>
     )

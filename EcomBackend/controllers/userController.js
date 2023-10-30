@@ -38,7 +38,7 @@ exports.login = apiPromise(async (req, res, next) => {
 
     const { email, password } = req.body;
     if (!email || !password) return next(new CustomError("All fields are required", 400));
-    console.log(password);
+
     const user = await User.findOne({ email }).select('+password');
     if (!user) return next(new CustomError("Wrong Email or Password", 400));
 

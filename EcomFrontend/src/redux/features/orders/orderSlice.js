@@ -11,6 +11,7 @@ export const createOrder = createAsyncThunk("order/createOrder", async (buyerInf
             // Other headers and data
         },
     }
+    console.log(config);
     try {
         const { data } = await req.post("/order/create", buyerInfo, config);
         return data;

@@ -1,7 +1,7 @@
 import { BarChart, ResponsiveContainer, Bar, Tooltip } from "recharts";
 
 
-const Barchart = (props) => {
+const BarChart = (props) => {
     const { title, color, dataKey, chartData } = props;
     return (
         <div className="bar-chart">
@@ -23,4 +23,4 @@ const Barchart = (props) => {
     )
 }
 
-export default Barchart
+export default BarChart;

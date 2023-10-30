@@ -35,4 +35,4 @@ const ChartBox = (props) => {
     )
 }
 
-export default ChartBox
+export default ChartBox;

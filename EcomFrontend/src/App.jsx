@@ -17,6 +17,7 @@ const SingleProductPage = lazy(() => import("./pages/Admin/SingleProductPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 const ForgotPass = lazy(() => import("./pages/ForgotPass"));
 const Settings = lazy(() => import("./pages/Settings"));
+const ErrorPage = lazy(() => import('./components/404/ErrorPage'));
 
 // services
 // import { getProducts } from './redux/features/Product/services/products';
@@ -31,7 +32,6 @@ import ContactSkeleton from './skeleton/ContactSkeleton';
 import HelpSkeleton from './skeleton/HelpSkeleton';
 import Skeleton from './skeleton/Skeleton';
 import SingleProductSkeleton from './skeleton/SingleProductSkeleton';
-import ErrorPage from './components/404/ErrorPage';
 
 
 function App() {
@@ -117,7 +117,9 @@ function App() {
         }
 
       ],
-      errorElement: <ErrorPage />
+      errorElement: <Suspense>
+        <ErrorPage />
+      </Suspense>
     },
   ]);
 

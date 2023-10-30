@@ -9,9 +9,6 @@ const cors = require('cors');
 
 const app = express();
 
-// cors 
-// const cors_url = process.env.CORS_WHITE_LIST_URL;
-// const whitelist = [cors_url, cors_url + '/admin/products', cors_url + '/admin/users', cors_url + '/admin/orders'];
 const whitelist = ["http://localhost:5173", "https://ecom-store-app.netlify.app/"];
 const corsOptions = {
     credentials: true, // This is important.

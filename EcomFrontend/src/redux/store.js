@@ -33,7 +33,7 @@ const store = configureStore({
         getDefaultMiddleware({
             serializableCheck: false,
         }),
-
+    devTools: false,
 })
 export const persistor = persistStore(store)
 export default store;

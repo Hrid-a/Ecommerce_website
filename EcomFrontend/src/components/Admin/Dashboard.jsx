@@ -1,5 +1,5 @@
-import BarChart from "../ui/BarChart";
-import ChartBox from "../ui/ChartBox";
+import ChartBox from "../ui/ChartBox.jsx";
+import BarChart from "../ui/BarChart.jsx";
 import { FaUsers, FaSellsy } from "react-icons//fa";
 import {
     chartBoxUser,

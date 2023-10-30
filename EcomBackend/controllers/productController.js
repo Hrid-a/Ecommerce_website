@@ -39,7 +39,6 @@ exports.addProduct = apiPromise(async (req, res, next) => {
 exports.allProducts = apiPromise(async (req, res, next) => {
     const resultPerPage = 7;
     const totalProducts = await Product.countDocuments();
-    console.log(req.query);
     const productsObj = new WhereClause(Product.find(), req.query).search().filter().paginator(resultPerPage);
 
     const products = await productsObj.base;
@@ -59,7 +58,6 @@ exports.singleProduct = apiPromise(async (req, res, next) => {
 })
 
 exports.addReview = apiPromise(async (req, res, next) => {
-    console.log(req.body);
     const { rating, comment, productId } = req.body;
     if (!rating || !comment) return next(new CustomError('All fields are required'));
 
@@ -118,7 +116,6 @@ exports.deleteReview = apiPromise(async (req, res, next) => {
 
 
 exports.adminProducts = apiPromise(async (req, res, next) => {
-    console.log("admin, products");
     const products = await Product.find();
 
     res.status(200).json({ success: true, products });

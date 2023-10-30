@@ -3,12 +3,13 @@ import { useCallback, useRef, useState } from "react";
 import useInfinityScroll from "../../hooks/useInfinityScroll";
 import SkItem from "../../skeleton/SkItem";
 import { FaSearch } from "react-icons/fa";
+import { Toaster, toast } from "sonner";
 
 const ProductList = () => {
     const [pageNumber, setPageNumber] = useState(1);
     const [search, setSearch] = useState("");
-    const { isLoading, hasMore, products } = useInfinityScroll(pageNumber, search);
-    // const { products } = useSelector(state => state.product);
+    const { isLoading, hasMore, products, error } = useInfinityScroll(pageNumber, search);
+
     const observer = useRef();
     const lastElement = useCallback((node) => {
         if (isLoading) return;
@@ -24,6 +25,9 @@ const ProductList = () => {
 
     }, [isLoading, hasMore]);
 
+    if (error) {
+        toast.error(error);
+    }
     return (
         <>
             <div className="search-box">
@@ -36,6 +40,7 @@ const ProductList = () => {
                 />
                 <span><FaSearch /></span>
             </div>
+            <Toaster richColors position="top-center" />
             <div className="cards-container">
 
                 {!isLoading ? products.map((card, index) => {

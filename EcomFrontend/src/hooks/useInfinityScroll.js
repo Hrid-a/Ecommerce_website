@@ -2,40 +2,54 @@ import { req } from "../utils/axios";
 import { useEffect, useState } from "react";
 
 const useInfinityScroll = (pageNumber, searchValue) => {
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [hasMore, setHasMore] = useState(false);
+    const [hasMore, setHasMore] = useState(true); // Initialize with true to load initial data.
+    const [error, setError] = useState(null);
     let query = "";
-    if (searchValue) {
-        query += "?search=" + searchValue;
-    } else if (pageNumber) {
-        query += "?page=" + pageNumber;
-    }
 
-    const getData = async () => {
+    const getData = async (query) => {
         try {
             const { data } = await req.get(`/products${query}`);
-            setIsLoading(false);
-            setHasMore(data.products.length > 0);
-            if (data?.success) {
-                setProducts(prev => [...prev, ...data.products])
+            if (data.success) {
+                setProducts((prevProducts) => [...prevProducts, ...data.products]);
+                setHasMore(data.products.length > 0);
             }
         } catch (error) {
-            return error?.response?.data?.message || "someThing went wrong";
-
+            setError(error?.response?.data?.message || "Something went wrong");
+        } finally {
+            setIsLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
+        // Reset state when searchValue changes.
         setProducts([]);
+
     }, [searchValue])
+
     useEffect(() => {
-        setIsLoading(true);
-        getData();
-    }, [pageNumber, searchValue]);
+        setError(null);
+        if (searchValue) {
+            query += `?search=${searchValue}`;
+        }
+        const timer = setTimeout(() => {
 
+            getData(query);
+        }, 300);
+        return () => clearTimeout(timer);
+    }, [searchValue]);
 
-    return { hasMore, isLoading, products };
-}
+    useEffect(() => {
+        if (!isLoading && hasMore && pageNumber > 1) {
+            query = `?page=${pageNumber}`;
+            setIsLoading(true);
+            getData(query);
+        }
 
-export default useInfinityScroll
+    }, [pageNumber]);
+
+    return { hasMore, isLoading, products, error };
+};
+
+export default useInfinityScroll;

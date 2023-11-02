@@ -1,4 +1,5 @@
 import avatar from "../assets/avatar.jpg";
+import FeaturedProduct from "../components/Products/FeaturedProduct";
 import Products from "../components/Products/Products";
 import { FaShippingFast, FaShieldAlt, FaCartArrowDown } from "react-icons/fa";
 import { RiBankCard2Line } from "react-icons/ri";
@@ -29,6 +30,7 @@ const Home = () => {
                 <div className="product-section">
 
                     <Products />
+                    <FeaturedProduct />
                     <div className="section">
                         <div className="title-container">
                             <h2 className="title">Why choose us</h2>

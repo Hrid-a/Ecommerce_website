@@ -1,19 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { req } from "../../../utils/axios";
-import { selectUserToken } from "../User/userSlice";
 
 
-export const createOrder = createAsyncThunk("order/createOrder", async (buyerInfo, { rejectWithValue, getState }) => {
-    const token = selectUserToken(getState());
-    const config = {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            // Other headers and data
-        },
-    }
-    console.log(config);
+export const createOrder = createAsyncThunk("order/createOrder", async (buyerInfo, { rejectWithValue }) => {
     try {
-        const { data } = await req.post("/order/create", buyerInfo, config);
+        const { data } = await req.post("/order/create", buyerInfo);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message || "Something went wrong";
@@ -21,16 +12,9 @@ export const createOrder = createAsyncThunk("order/createOrder", async (buyerInf
     }
 });
 
-export const updateOrder = createAsyncThunk("order/updateOrder", async ({ _id, ...rest }, { rejectWithValue, getState }) => {
-    const token = selectUserToken(getState());
-    const config = {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            // Other headers and data
-        },
-    }
+export const updateOrder = createAsyncThunk("order/updateOrder", async ({ _id, ...rest }, { rejectWithValue }) => {
     try {
-        const { data } = await req.put(`/admin/order/${_id}`, rest, config);
+        const { data } = await req.put(`/admin/order/${_id}`, rest);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message;
@@ -38,16 +22,9 @@ export const updateOrder = createAsyncThunk("order/updateOrder", async ({ _id, .
     }
 });
 
-export const deleteOrder = createAsyncThunk("order/deleteOrder", async (id, { rejectWithValue, getState }) => {
-    const token = selectUserToken(getState());
-    const config = {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            // Other headers and data
-        },
-    }
+export const deleteOrder = createAsyncThunk("order/deleteOrder", async (id, { rejectWithValue }) => {
     try {
-        const { data } = await req.delete(`/admin/order/${id}`, config);
+        const { data } = await req.delete(`/admin/order/${id}`);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message || "something Went Wrong please try again";

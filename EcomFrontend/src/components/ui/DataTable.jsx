@@ -1,7 +1,7 @@
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 
-export default function DataTable({ rows, columns, setRowId }) {
+export default function DataTable({ rows, columns }) {
 
 
 
@@ -34,11 +34,6 @@ export default function DataTable({ rows, columns, setRowId }) {
                     bottom: params.isLastVisible ? 0 : 5,
                 })}
 
-                onCellEditCommit={(params) => {
-                    console.log(params._id)
-                    return setRowId(params._id)
-                }
-                }
                 pageSizeOptions={[10]}
                 checkboxSelection
                 disableRowSelectionOnClick

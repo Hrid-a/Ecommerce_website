@@ -8,8 +8,7 @@ const HelpSkeleton = () => {
                 <p className="sekeleton skeleton-text" style={{ width: "140px", height: "0.8rem" }} ></p>
             </div>
             <section className="section" style={{ width: "100%", height: "100%" }}>
-                <div className="loadingSkeleton ">
-                    {SkItem()}
+                <div className="loadingSkeleton help">
                     {SkItem()}
                     {SkItem()}
                     {SkItem()}

@@ -25,7 +25,7 @@ paths:
     post:
       tags:
         - User
-      summary: signup a new user. required files are - name, email, password and photo
+      summary: signup a new user. required files are - name, email, password and photo optional
       requestBody:
         content:
           multipart/form-data:
@@ -35,7 +35,6 @@ paths:
                 - name
                 - email
                 - password
-                - photo
               properties:
                 name:
                   type: string

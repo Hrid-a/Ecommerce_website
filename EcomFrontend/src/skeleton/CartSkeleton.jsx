@@ -1,9 +1,9 @@
 import SkItem from "./SkItem"
 
-const SingleProductSkeleton = () => {
+const CartSkeleton = () => {
     return (
         <section>
-            <div className="loadingSkeleton cart">
+            <div className="loadingSkeleton product">
                 {SkItem()}
                 {SkItem()}
             </div>
@@ -11,4 +11,4 @@ const SingleProductSkeleton = () => {
     )
 }
 
-export default SingleProductSkeleton
+export default CartSkeleton;

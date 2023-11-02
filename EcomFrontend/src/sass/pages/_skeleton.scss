@@ -51,7 +51,8 @@
     margin-left: -20px;
     padding: 0 20px;
 
-    &.contact {
+    &.contact,
+    &.help {
         justify-content: center;
     }
 
@@ -62,6 +63,19 @@
 
         .skeletonItem:last-child {
             flex: 5;
+        }
+    }
+
+    &.cart {
+        margin-top: 2rem;
+        padding: 1rem;
+
+        .skeletonItem:first-child {
+            flex: 5;
+        }
+
+        .skeletonItem:last-child {
+            flex: 2;
         }
     }
 
@@ -110,5 +124,13 @@
         }
     }
 
+    &.contact,
+    &.help {
+        flex-wrap: wrap;
+
+        .skeletonItem {
+            width: calc(20% - 16px);
+        }
+    }
 
 }

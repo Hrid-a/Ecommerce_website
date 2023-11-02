@@ -1,12 +1,15 @@
 import DataTable from "../ui/DataTable";
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 import { Toaster } from "sonner";
 import Dialog from "../Products/Dialog";
 import moment from "moment/moment";
 import ProductActions from "../ui/ProductActions";
+import useProducts from "../../hooks/useProducts";
 
 const Products = () => {
-    const { products } = useLoaderData();
+    // const { products } = useLoaderData();
+    const products = useProducts();
+    console.log(products);
     const columns = [
         { field: '_id', headable: true },
         {

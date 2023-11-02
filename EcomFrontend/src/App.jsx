@@ -21,9 +21,9 @@ const ErrorPage = lazy(() => import('./components/404/ErrorPage'));
 
 // services
 // import { getProducts } from './redux/features/Product/services/products';
-import { getAllProducts } from './redux/features/Product/services/products';
-import { getAllUsers } from './redux/features/User/services/user';
-import { getAllOrders } from "./redux/features/orders/services/order";
+// import { getAllProducts } from './redux/features/Product/services/products';
+// import { getAllUsers } from './redux/features/User/services/user';
+// import { getAllOrders } from "./redux/features/orders/services/order";
 
 import "./sass/main.scss";
 import { useSelector } from 'react-redux';
@@ -55,7 +55,7 @@ function App() {
         },
         {
           path: "/cart",
-          element: <Suspense><CartPage /></Suspense>
+          element: <Suspense fallback={<SingleProductSkeleton />} ><CartPage /></Suspense>
         },
         {
           path: '/signup',
@@ -96,17 +96,17 @@ function App() {
             ,
             {
               path: "/admin/products",
-              loader: getAllProducts,
+              // loader: getAllProducts,
               element: <Suspense> <Products /> </Suspense>
             },
             {
               path: "/admin/users",
-              loader: getAllUsers,
+              // loader: getAllUsers,
               element: <Suspense> <Users /> </Suspense>
             },
             {
               path: "/admin/orders",
-              loader: getAllOrders,
+              // loader: getAllOrders,
               element: <Suspense> <Orders /> </Suspense>
             },
             {

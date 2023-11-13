@@ -37,7 +37,7 @@ const ProductList = () => {
 
                 {products.map((card, index) => {
                     if (products.length === index + 1) {
-                        return <Card refElement={lastElement} key={card._id} data={card} />
+                        return <Card ref={lastElement} key={card._id} data={card} />
                     } else {
 
                         return <Card key={card._id} data={card} />

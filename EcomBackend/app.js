@@ -19,14 +19,15 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const whitelist = [
     "http://localhost:5173",
     "https://ecom-app-siz3.onrender.com",
-    "https://ecom-app-siz3.onrender.com/api/v1/admin/products"
+    "https://ecom-app-siz3.onrender.com/admin/products"
 ];
 
 const corsOptions = {
     credentials: true,
     origin: (origin, callback) => {
+        console.log(origin);
         // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin || whitelist.includes(origin)) {
+        if (whitelist.includes(origin)) {
             callback(null, true);
         } else {
             callback(new CustomError('Not allowed by CORS', 400));
@@ -55,7 +56,6 @@ app.use(fileUpload({
 app.use(morgan('tiny'));
 
 // import routes Here
-const home = require('./routes/home');
 const user = require('./routes/user');
 const product = require('./routes/product');
 const order = require('./routes/order');

@@ -13,6 +13,7 @@ const useInfinityScroll = (pageNumber) => {
         const query = `?page=${pageNumber}`;
         const getData = async (query) => {
             try {
+                setIsLoading(true);
                 const { data } = await req.get(`/products${query}`);
                 if (data.success) {
                     dispatch(addToProducts(data.products));
@@ -24,7 +25,7 @@ const useInfinityScroll = (pageNumber) => {
                 setIsLoading(false);
             }
         };
-        setIsLoading(true);
+
 
         pageNumber > 1 && getData(query);
 

@@ -6,16 +6,14 @@ import { Toaster, toast } from "sonner";
 import { useSelector } from "react-redux";
 
 const ProductList = () => {
-    const products = useSelector(state => state.product.products);
     const [pageNumber, setPageNumber] = useState(1);
     const { isLoading, hasMore, error } = useInfinityScroll(pageNumber);
+    const products = useSelector(state => state.product.products);
     const observer = useRef();
 
     const lastElement = useCallback((node) => {
-
         if (isLoading) return;
         if (observer.current) return observer.current.disconnect();
-
         observer.current = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting && hasMore) {
                 setPageNumber(prevPageNumber => prevPageNumber + 1);

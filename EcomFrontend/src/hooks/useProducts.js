@@ -11,11 +11,10 @@ const useProducts = () => {
             try {
                 const { data } = await req.get("/products", { signal: controller.signal });
                 if (data.success) {
-                    console.log(data);
                     dispatch(addToProducts(data.products));
                 }
             } catch (error) {
-                return error.response.data.message;
+                return error?.response?.data?.message || "Something went wrong";
             }
         }
         getProducts();

@@ -54,6 +54,9 @@ const productSlice = createSlice({
         addToProducts: (state, action) => {
             state.products = [...state.products, ...action.payload];
             // state.totalProducts = action.payload;
+        },
+        addSearchProducts: (state, action) => {
+            state.products = [...action.payload];
         }
 
     },
@@ -118,5 +121,5 @@ const productSlice = createSlice({
 })
 
 
-export const { handleProductError, addToProducts } = productSlice.actions;
+export const { handleProductError, addToProducts, addSearchProducts } = productSlice.actions;
 export default productSlice.reducer;

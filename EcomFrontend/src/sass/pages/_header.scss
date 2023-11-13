@@ -7,6 +7,7 @@ header {
     @include flex_group(space-between, center);
     position: relative;
 
+
     .nav {
         @media screen and (max-width:767px) {
             position: absolute;

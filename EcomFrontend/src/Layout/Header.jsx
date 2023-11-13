@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo-regular.png";
 import User from "../components/User/User";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBox from "../components/SearchBox";
 
 const Header = () => {

@@ -2,16 +2,17 @@ import Card from "./Card"
 import { useCallback, useRef, useState } from "react";
 import useInfinityScroll from "../../hooks/useInfinityScroll";
 import SkItem from "../../skeleton/SkItem";
-import { FaSearch } from "react-icons/fa";
 import { Toaster, toast } from "sonner";
+import { useSelector } from "react-redux";
 
 const ProductList = () => {
+    const products = useSelector(state => state.product.products);
     const [pageNumber, setPageNumber] = useState(1);
-    const [search, setSearch] = useState("");
-    const { isLoading, hasMore, products, error } = useInfinityScroll(pageNumber, search);
-
+    const { isLoading, hasMore, error } = useInfinityScroll(pageNumber);
     const observer = useRef();
+
     const lastElement = useCallback((node) => {
+
         if (isLoading) return;
         if (observer.current) return observer.current.disconnect();
 
@@ -28,29 +29,22 @@ const ProductList = () => {
     if (error) {
         toast.error(error);
     }
+
     return (
         <>
-            <div className="search-box">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    value={search}
-                    name="search"
-                    onChange={(e) => setSearch(e.target.value)}
-                />
-                <span><FaSearch /></span>
-            </div>
             <Toaster richColors position="top-center" />
             <div className="cards-container">
 
-                {!isLoading ? products.map((card, index) => {
+                {products.map((card, index) => {
                     if (products.length === index + 1) {
                         return <Card refElement={lastElement} key={card._id} data={card} />
                     } else {
 
                         return <Card key={card._id} data={card} />
                     }
-                }) : <>
+                })}
+
+                {isLoading && <>
                     {SkItem()}
                     {SkItem()}
                     {SkItem()}
@@ -58,6 +52,7 @@ const ProductList = () => {
                     {SkItem()}
                 </>
                 }
+                {!hasMore && <p>No more data</p>}
             </div>
         </>
     )

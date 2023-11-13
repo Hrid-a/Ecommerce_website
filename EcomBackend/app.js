@@ -9,24 +9,33 @@ const cors = require('cors');
 
 const app = express();
 
-const whitelist = ["http://localhost:5173", "https://ecom-app-siz3.onrender.com", "https://ecom-app-siz3.onrender.com/admin/products"];
-const corsOptions = {
-    credentials: true, // This is important.
-    origin: (origin, callback) => {
-        if (whitelist.includes(origin)) return callback(null, true)
-
-        callback(new CustomError('Not allowed by CORS', 400));
-    }
-}
-
-app.use(cors(corsOptions));
-
 // Docs and docs middleware 
 
 const YAML = require("yamljs");
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = YAML.load("./swagger.yaml");
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+const whitelist = [
+    "http://localhost:5173",
+    "http://localhost:5173/admin/products",
+    "https://ecom-app-siz3.onrender.com",
+    "https://ecom-app-siz3.onrender.com/admin/products"
+];
+
+const corsOptions = {
+    credentials: true,
+    origin: (origin, callback) => {
+        if (whitelist.includes(origin)) return callback(null, true);
+
+        callback(new CustomError('Not allowed by CORS', 400));
+    },
+    methods: "GET,HEAD,PUT,POST,DELETE",  // Add the methods you want to allow
+    preflightContinue: false,  // Set preflightContinue to false
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
 
 // reqular middlewares
 app.use(express.json());
@@ -49,7 +58,6 @@ const product = require('./routes/product');
 const order = require('./routes/order');
 
 // routes middlewares
-app.use("/api/v1/", home);
 app.use("/api/v1/", user);
 app.use("/api/v1/", product);
 app.use("/api/v1/", order);

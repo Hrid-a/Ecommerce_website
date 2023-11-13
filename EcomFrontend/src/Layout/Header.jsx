@@ -5,14 +5,13 @@ import logo from "../assets/logo-regular.png";
 import User from "../components/User/User";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-// import useSearchProducts from "../hooks/useSearchProducts";
+import SearchBox from "../components/SearchBox";
 
 const Header = () => {
     const { user } = useSelector((state) => state.user);
     const { products } = useSelector((state) => state.cart);
     const [state, setState] = useState(false);
 
-    // useSearchProducts(search);
 
     return (
         <header>
@@ -21,8 +20,10 @@ const Header = () => {
                     <img src={logo} alt="The logo image" />
                 </Link>
             </div>
+            <SearchBox />
             <nav className={"nav " + (state ? " d-block" : "")}>
                 <button className="toggle-button close-icon" onClick={() => setState(false)}>
+                    <span className="sr-only">hide the menu</span>
                     {state && <AiOutlineClose />}
                 </button>
                 <div className="nav__left">

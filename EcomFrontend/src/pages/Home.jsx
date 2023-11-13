@@ -3,10 +3,10 @@ import FeaturedProduct from "../components/Products/FeaturedProduct";
 import Products from "../components/Products/Products";
 import { FaShippingFast, FaShieldAlt, FaCartArrowDown } from "react-icons/fa";
 import { RiBankCard2Line } from "react-icons/ri";
-// import useProducts from "../hooks/useProducts";
+import useProducts from "../hooks/useProducts";
 
 const Home = () => {
-    // useProducts();
+    useProducts();
     return (
         <>
             <img src={avatar} className="bg-image" alt="a background imaage" />

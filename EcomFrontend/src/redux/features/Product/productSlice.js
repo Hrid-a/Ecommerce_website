@@ -16,7 +16,6 @@ export const updateTheProduct = createAsyncThunk("product/updateTheProduct", asy
     const { id, productData } = data;
 
     try {
-        console.log(id)
         const { data } = await req.put(`/admin/product/${id}`, productData);
         return data;
     } catch (error) {
@@ -53,7 +52,7 @@ const productSlice = createSlice({
             state.error = action.payload;
         },
         addToProducts: (state, action) => {
-            state.products = [...action.payload];
+            state.products = [...state.products, ...action.payload];
             // state.totalProducts = action.payload;
         }
 

@@ -19,11 +19,7 @@ const ForgotPass = lazy(() => import("./pages/ForgotPass"));
 const Settings = lazy(() => import("./pages/Settings"));
 const ErrorPage = lazy(() => import('./components/404/ErrorPage'));
 
-// services
-// import { getProducts } from './redux/features/Product/services/products';
-// import { getAllProducts } from './redux/features/Product/services/products';
-// import { getAllUsers } from './redux/features/User/services/user';
-// import { getAllOrders } from "./redux/features/orders/services/order";
+
 
 import "./sass/main.scss";
 import { useSelector } from 'react-redux';
@@ -96,17 +92,14 @@ function App() {
             ,
             {
               path: "/admin/products",
-              // loader: getAllProducts,
               element: <Suspense> <Products /> </Suspense>
             },
             {
               path: "/admin/users",
-              // loader: getAllUsers,
               element: <Suspense> <Users /> </Suspense>
             },
             {
               path: "/admin/orders",
-              // loader: getAllOrders,
               element: <Suspense> <Orders /> </Suspense>
             },
             {

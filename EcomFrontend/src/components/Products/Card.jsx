@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ data, refElement }) => {
+const Card = forwardRef(({ data }, ref) => {
     const [imgIndex, setImgIndex] = useState(1);
 
     const { _id, name, images, price } = data;
     return (
-        <div className="card" ref={refElement}>
+        <div className="card" ref={ref}>
             <div className="card__header">
                 <Link to={`product/${_id}`}>
 
@@ -27,6 +27,6 @@ const Card = ({ data, refElement }) => {
 
         </div>
     )
-}
+});
 
 export default Card

@@ -5,7 +5,7 @@ export const addReview = createAsyncThunk("review/addReview", async (reviewData,
 
 
     try {
-        const { data } = await req.post("/review", reviewData);
+        const { data } = await req.post("/review", reviewData, { withCredentials: true, });
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message;

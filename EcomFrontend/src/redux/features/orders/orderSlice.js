@@ -4,7 +4,7 @@ import { req } from "../../../utils/axios";
 
 export const createOrder = createAsyncThunk("order/createOrder", async (buyerInfo, { rejectWithValue }) => {
     try {
-        const { data } = await req.post("/order/create", buyerInfo);
+        const { data } = await req.post("/order/create", buyerInfo, { withCredentials: true });
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message || "Something went wrong";
@@ -14,7 +14,7 @@ export const createOrder = createAsyncThunk("order/createOrder", async (buyerInf
 
 export const updateOrder = createAsyncThunk("order/updateOrder", async ({ _id, ...rest }, { rejectWithValue }) => {
     try {
-        const { data } = await req.put(`/admin/order/${_id}`, rest);
+        const { data } = await req.put(`/admin/order/${_id}`, rest, { withCredentials: true, });
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message;
@@ -24,7 +24,7 @@ export const updateOrder = createAsyncThunk("order/updateOrder", async ({ _id, .
 
 export const deleteOrder = createAsyncThunk("order/deleteOrder", async (id, { rejectWithValue }) => {
     try {
-        const { data } = await req.delete(`/admin/order/${id}`);
+        const { data } = await req.delete(`/admin/order/${id}`, { withCredentials: true, });
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message || "something Went Wrong please try again";

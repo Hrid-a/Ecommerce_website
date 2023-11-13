@@ -14,7 +14,7 @@ export const userSignUp = createAsyncThunk("auth/userSignUp", async (userData, {
 export const userLogin = createAsyncThunk("auth/userLogin", async (userData, { rejectWithValue }) => {
 
     try {
-        const { data } = await req.post("/login", userData, { withCredentials: true, });
+        const { data } = await req.post("/login", userData);
         return data;
     } catch (error) {
         return rejectWithValue(error.response.data.message);
@@ -24,7 +24,7 @@ export const userLogin = createAsyncThunk("auth/userLogin", async (userData, { r
 export const userLogOut = createAsyncThunk("auth/userLogOut", async (_, { rejectWithValue }) => {
 
     try {
-        await req.get("/logout", { withCredentials: true, });
+        await req.get("/logout");
 
     } catch (error) {
         return rejectWithValue(error.response.data);
@@ -34,7 +34,7 @@ export const userLogOut = createAsyncThunk("auth/userLogOut", async (_, { reject
 export const deleteUser = createAsyncThunk("user/deleteUser", async (id, { rejectWithValue }) => {
 
     try {
-        const { data } = await req.delete(`/admin/user/${id}`, { withCredentials: true, });
+        const { data } = await req.delete(`/admin/user/${id}`);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message || "something wrong happened";
@@ -44,7 +44,7 @@ export const deleteUser = createAsyncThunk("user/deleteUser", async (id, { rejec
 
 export const updateUser = createAsyncThunk("user/updateUser", async (formData, { rejectWithValue }) => {
     try {
-        const { data } = await req.put("/user/update", formData, { withCredentials: true, });
+        const { data } = await req.put("/user/update", formData);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message || "something went Wrong";
@@ -64,7 +64,7 @@ export const forgotPass = createAsyncThunk("user/forgotPass", async (emailData, 
 
 export const changePassword = createAsyncThunk("user/changePassword", async (userData, { rejectWithValue }) => {
     try {
-        const { data } = await req.put("/password/update", userData, { withCredentials: true, });
+        const { data } = await req.put("/password/update", userData);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message;

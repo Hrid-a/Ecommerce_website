@@ -9,7 +9,7 @@ const useProducts = () => {
         const controller = new AbortController();
         const getProducts = async () => {
             try {
-                const { data } = await req.get("/admin/products", { signal: controller.signal });
+                const { data } = await req.get("/products", { signal: controller.signal });
                 if (data.success) {
                     console.log(data);
                     dispatch(addToProducts(data.products));

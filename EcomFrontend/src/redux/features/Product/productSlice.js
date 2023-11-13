@@ -4,7 +4,7 @@ import { req } from "../../../utils/axios";
 export const addProduct = createAsyncThunk("product/addProduct", async (productData, { rejectWithValue }) => {
 
     try {
-        const { data } = await req.post('/products/add', productData, { withCredentials: true, });
+        const { data } = await req.post('/products/add', productData);
         return data;
     } catch (error) {
         const errorMessage = error.response.data.message || "Something went wrong";
@@ -16,7 +16,7 @@ export const updateTheProduct = createAsyncThunk("product/updateTheProduct", asy
     const { id, productData } = data;
 
     try {
-        const { data } = await req.put(`/admin/product/${id}`, productData, { withCredentials: true, });
+        const { data } = await req.put(`/admin/product/${id}`, productData);
         return data;
     } catch (error) {
         return rejectWithValue(error.response.data.message || error.response.data);
@@ -26,7 +26,7 @@ export const updateTheProduct = createAsyncThunk("product/updateTheProduct", asy
 export const removeProduct = createAsyncThunk("porduct/removeProduct", async (productId, { rejectWithValue }) => {
 
     try {
-        return await req.delete(`/admin/product/${productId}`, { withCredentials: true, });
+        return await req.delete(`/admin/product/${productId}`);
     } catch (error) {
         const errorMessage = error.response?.data?.message || 'An error occurred.';
         return rejectWithValue(errorMessage);

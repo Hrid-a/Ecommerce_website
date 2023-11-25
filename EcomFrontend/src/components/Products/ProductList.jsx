@@ -4,6 +4,7 @@ import useInfinityScroll from "../../hooks/useInfinityScroll";
 import SkItem from "../../skeleton/SkItem";
 import { Toaster, toast } from "sonner";
 import { useSelector } from "react-redux";
+import SearchBox from "../SearchBox";
 
 const ProductList = () => {
     const [pageNumber, setPageNumber] = useState(1);
@@ -31,6 +32,7 @@ const ProductList = () => {
     return (
         <>
             <Toaster richColors position="top-center" />
+            <SearchBox />
             <div className="cards-container">
 
                 {products.map((card, index) => {

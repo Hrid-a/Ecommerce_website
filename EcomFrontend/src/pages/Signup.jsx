@@ -14,7 +14,7 @@ import { valibotResolver } from "@hookform/resolvers/valibot";
 
 const Signup = () => {
     const { isSuccess, error, loading, message } = useSelector(state => state.user);
-    const { register, handleSubmit, formState } = useForm({
+    const { register, handleSubmit, formState, reset } = useForm({
         resolver: valibotResolver(registerSchema),
         defaultValues: {
             firstName: "",
@@ -47,7 +47,7 @@ const Signup = () => {
         Object.entries(data).map(item => formData.append(item[0], item[1]));
         formData.append('image', image);
         dispatch(userSignUp(formData));
-
+        reset();
     };
 
     return (

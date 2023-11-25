@@ -14,7 +14,7 @@ import Button from "../Button";
 
 const Dialog = () => {
     const { error, message, isSuccess, loading } = useSelector(state => state.product);
-    const { register, handleSubmit, formState } = useForm({
+    const { register, handleSubmit, formState, reset } = useForm({
         resolver: valibotResolver(productSchema),
         defaultValues: {
             name: "",
@@ -38,6 +38,7 @@ const Dialog = () => {
         Object.entries(data).map(item => formData.append(item[0], item[1]));
         images.forEach(item => formData.append("images", item));
         dispatch(addProduct(formData));
+        reset();
     }
 
     const errors = Object.values(formState.errors);

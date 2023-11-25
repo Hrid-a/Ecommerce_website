@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo-regular.png";
 import User from "../components/User/User";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import SearchBox from "../components/SearchBox";
+import { useState } from "react";
 
 const Header = () => {
     const { user } = useSelector((state) => state.user);
@@ -20,7 +19,7 @@ const Header = () => {
                     <img src={logo} alt="The logo image" />
                 </Link>
             </div>
-            <SearchBox />
+
             <nav className={"nav " + (state ? " d-block" : "")}>
                 <button className="toggle-button close-icon" onClick={() => setState(false)}>
                     <span className="sr-only">hide the menu</span>

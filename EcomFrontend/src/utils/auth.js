@@ -1,4 +1,6 @@
-import { email, enumType, maxLength, minLength, object, string, transform } from 'valibot'; // 0.77 kB
+import { email, enumType, getOutput, getPipeIssues, maxLength, minLength, object, string, transform } from 'valibot'; // 0.77 kB
+
+const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s]?[0-9]{3}[-\s]?[0-9]{4,6}$/im
 
 export const registerSchema = object({
     firstName: string('Only letters are allowed', [
@@ -62,7 +64,11 @@ export const shippingInfoSchema = object({
     ]),
     phone: string('You Should enter your phone number', [
         minLength(1, 'The phone field is required.'),
-        minLength(12, 'Wrong phone number')
+        minLength(10, 'Wrong phone number'),
+        (input) => {
+            if (!phoneRegex.test(input)) return getPipeIssues('custom', "This is not a valid phone number", input);
+            return getOutput(input);
+        }
     ]),
     city: string('You should Provide Your city.', [
         minLength(1, 'The city field is required .'),

@@ -4,10 +4,11 @@ import { shippingInfo } from "../../utils/data"
 import { shippingInfoSchema } from "../../utils/auth"
 import Input from "../Forms/Input";
 import Button from "../Button";
-import { createOrder, handleorderError } from "../../redux/features/orders/orderSlice";
+import { createOrder } from "../../redux/features/orders/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Toaster, toast } from "sonner";
 import { resetCart } from "../../redux/features/Product/cartSlice";
+import ThankYou from "../ThankYou";
 
 const PersonalInfo = () => {
     const { isSuccess, error, loading, message } = useSelector(state => state.order)
@@ -25,6 +26,8 @@ const PersonalInfo = () => {
     if (isSuccess) {
         toast.success(message);
         dispatch(resetCart());
+
+        return <ThankYou />;
     }
 
     const handleInfo = (data) => {
@@ -45,9 +48,7 @@ const PersonalInfo = () => {
 
     const errorsArray = Object.values(formState.errors);
     if (errorsArray.length) {
-        dispatch(handleorderError(errorsArray[0].message));
-    } else if (!error) {
-        dispatch(handleorderError(""));
+        toast.error(errorsArray[0].message);
     }
 
     return (

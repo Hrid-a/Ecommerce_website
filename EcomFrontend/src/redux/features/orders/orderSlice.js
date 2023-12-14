@@ -42,11 +42,6 @@ const initialState = {
 const orderSlice = createSlice({
     name: "order",
     initialState,
-    reducers: {
-        handleorderError: (state, action) => {
-            state.error = action.payload;
-        }
-    },
     extraReducers: (builder) => {
         builder
             .addCase(createOrder.pending, (state) => {
@@ -106,6 +101,5 @@ const orderSlice = createSlice({
     }
 })
 
-export const { handleorderError } = orderSlice.actions;
 
 export default orderSlice.reducer;

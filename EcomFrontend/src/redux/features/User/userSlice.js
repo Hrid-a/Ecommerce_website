@@ -31,16 +31,6 @@ export const userLogOut = createAsyncThunk("auth/userLogOut", async (_, { reject
     }
 });
 
-export const deleteUser = createAsyncThunk("user/deleteUser", async (id, { rejectWithValue }) => {
-
-    try {
-        const { data } = await req.delete(`/admin/user/${id}`);
-        return data;
-    } catch (error) {
-        const errorMessage = error.response.data.message || "something wrong happened";
-        return rejectWithValue(errorMessage);
-    }
-})
 
 export const updateUser = createAsyncThunk("user/updateUser", async (formData, { rejectWithValue }) => {
     try {
@@ -84,11 +74,6 @@ const initialState = {
 const authSlice = createSlice({
     name: "auth",
     initialState,
-    reducers: {
-        handleError: (state, action) => {
-            state.message = action.payload
-        }
-    },
     extraReducers:
         (builder) => {
             builder
@@ -125,24 +110,6 @@ const authSlice = createSlice({
                     state.message = "";
                     state.token = null;
                     state.user = null;
-                })
-                .addCase(deleteUser.pending, (state) => {
-                    state.loading = true;
-                    state.isSuccess = false;
-                    state.error = "";
-                    state.message = "";
-                })
-                .addCase(deleteUser.fulfilled, (state, action) => {
-                    state.isSuccess = true;
-                    state.message = action.payload.message;
-                    state.error = "";
-                    state.loading = false;
-                })
-                .addCase(deleteUser.rejected, (state, action) => {
-                    state.error = action.payload;
-                    state.loading = false;
-                    state.isSuccess = false;
-                    state.message = "";
                 })
                 .addCase(forgotPass.pending, (state) => {
                     state.message = "";
@@ -204,6 +171,5 @@ const authSlice = createSlice({
         }
 });
 
-export const { handleError } = authSlice.actions;
 export default authSlice.reducer;
 

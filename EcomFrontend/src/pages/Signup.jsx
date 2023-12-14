@@ -7,13 +7,13 @@ import { registerSchema } from "../utils/auth";
 import InputFile from "../components/Forms/InputFile";
 import { Toaster, toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
-import { handleError, userSignUp } from "../redux/features/User/userSlice";
+import { userSignUp } from "../redux/features/User/userSlice";
 import { useForm } from "react-hook-form";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 
 
 const Signup = () => {
-    const { isSuccess, error, loading, message } = useSelector(state => state.user);
+    const { isSuccess, error, loading } = useSelector(state => state.user);
     const { register, handleSubmit, formState, reset } = useForm({
         resolver: valibotResolver(registerSchema),
         defaultValues: {
@@ -27,7 +27,7 @@ const Signup = () => {
     const [image, setImage] = useState("");
 
     if (isSuccess) {
-        toast.success('Your account has been created successfully');
+        toast.success('Your account has been created successfully, please validate your email first. Chec your inbox');
     }
 
 
@@ -37,9 +37,7 @@ const Signup = () => {
 
     const schemaErrors = Object.values(formState.errors);
     if (schemaErrors.length) {
-        dispatch(handleError(schemaErrors[0].message));
-    } else {
-        dispatch(handleError(""));
+        toast.error(schemaErrors[0].message)
     }
 
     const registerUser = (data) => {
@@ -60,7 +58,6 @@ const Signup = () => {
             <div className="form">
                 <form onSubmit={handleSubmit(registerUser)}>
                     {error && <span className="error">{error}</span>}
-                    {message && <span className="error">{message}</span>}
                     {signUpInput.map(input => {
                         return (
                             <Input key={input.id}

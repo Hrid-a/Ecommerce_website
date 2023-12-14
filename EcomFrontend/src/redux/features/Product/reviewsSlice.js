@@ -20,11 +20,6 @@ const reviewSlice = createSlice({
         error: "",
         message: "",
     },
-    reducers: {
-        handleReviewError: (state, action) => {
-            state.error = action.payload;
-        },
-    },
     extraReducers:
         (builder) => {
             builder
@@ -51,5 +46,4 @@ const reviewSlice = createSlice({
 
 })
 
-export const { handleReviewError } = reviewSlice.actions;
 export default reviewSlice.reducer;

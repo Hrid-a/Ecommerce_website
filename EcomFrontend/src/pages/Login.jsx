@@ -5,13 +5,14 @@ import { loginInputs } from "../utils/data";
 import { loginSchema } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { handleError, userLogin } from "../redux/features/User/userSlice";
+import { userLogin } from "../redux/features/User/userSlice";
 import { useForm } from "react-hook-form";
 import { valibotResolver } from "@hookform/resolvers/valibot";
+import { toast, Toaster } from "sonner";
 import { useEffect } from "react";
 
 const Login = () => {
-    const { isSuccess, error, loading, message, user } = useSelector(state => state.user)
+    const { isSuccess, error, loading } = useSelector(state => state.user)
     const { register, handleSubmit, formState } = useForm({
         resolver: valibotResolver(loginSchema),
         defaultValues: {
@@ -24,20 +25,16 @@ const Login = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            if (user && user.role === 'admin') {
-                navigate("/admin");
-            } else if (user.role === "user") {
-                navigate("/");
-            }
+            navigate("/");
+
         }
 
     }, [isSuccess])
+
     const schemaErrors = Object.values(formState.errors);
 
     if (schemaErrors.length) {
-        dispatch(handleError(schemaErrors[0].message));
-    } else {
-        dispatch(handleError(""));
+        toast.error(schemaErrors[0].message);
     }
 
     const handleLogin = (data) => {
@@ -52,9 +49,9 @@ const Login = () => {
                 <p>it is quick and easy</p>
             </section>
             <div className="form">
+                <Toaster richColors position="top-center" />
                 <form onSubmit={handleSubmit(handleLogin)}>
                     {error && <span className="error">{error}</span>}
-                    {message && <span className="error">{message}</span>}
                     {loginInputs.map(input => {
                         return (
                             <Input key={input.id}

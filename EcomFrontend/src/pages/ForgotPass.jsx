@@ -5,7 +5,7 @@ import Input from "../components/Forms/Input"
 import Button from "../components/Button"
 import { useDispatch, useSelector } from "react-redux"
 import { Toaster, toast } from "sonner"
-import { forgotPass, handleError } from "../redux/features/User/userSlice"
+import { forgotPass } from "../redux/features/User/userSlice"
 
 const ForgotPass = () => {
     const { error, isSuccess, message } = useSelector(state => state.user);
@@ -25,7 +25,7 @@ const ForgotPass = () => {
 
     const errorsList = Object.entries(formState.errors);
     if (errorsList.length) {
-        dispatch(handleError(errorsList[0].message));
+        toast.error(errorsList[0].message)
     }
 
     return (

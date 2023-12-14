@@ -1,4 +1,4 @@
-import { email, enumType, getOutput, getPipeIssues, maxLength, minLength, object, string, transform } from 'valibot'; // 0.77 kB
+import { email, getOutput, getPipeIssues, maxLength, minLength, object, string } from 'valibot'; // 0.77 kB
 
 const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s]?[0-9]{3}[-\s]?[0-9]{4,6}$/im
 
@@ -75,6 +75,7 @@ export const shippingInfoSchema = object({
     ]),
 
 })
+
 export const contactSchema = object({
 
     email: string('Your email must be a string.', [
@@ -91,18 +92,7 @@ export const contactSchema = object({
     ])
 });
 
-export const productSchema = object({
-    name: string('Only letters are allowed', [
-        minLength(3, "Product name must be at least 3 characters")
-    ]),
-    price: transform(string(), (price) => parseFloat(price)),
 
-    stock: transform(string(), (stock) => Number(stock), "invalid type error are comming from here"),
-    category: enumType(['decor', 'office', 'living room']),
-    description: string("Enter a valid description", [
-        minLength(10, "The description should be at least 10 characters")
-    ])
-})
 
 export const reviewSchema = object({
     comment: string('Only letters are allowed', [

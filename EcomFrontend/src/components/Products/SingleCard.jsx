@@ -4,8 +4,7 @@ import { addToCart } from "../../redux/features/Product/cartSlice";
 import { FaShoppingCart } from "react-icons/fa";
 import Reviews from "../reviews/Reviews";
 
-const SingleCard = ({ product }) => {
-    const { _id, description, name, category, images, price, reviews } = product;
+const SingleCard = ({ product: { _id, description, name, category, images, price, reviews } }) => {
 
     const [quantity, setQuantity] = useState(1);
     const [selectedImg, setSelectedImg] = useState(2);

@@ -4,7 +4,7 @@ import Input from "../Forms/Input"
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { valibotResolver } from "@hookform/resolvers/valibot";
-import { changePassword, handleError } from "../../redux/features/User/userSlice";
+import { changePassword } from "../../redux/features/User/userSlice";
 import { changePasswordInputs } from "../../utils/data";
 import { changePasswordSchema } from "../../utils/auth";
 
@@ -18,10 +18,10 @@ const PasswordChanger = () => {
             confirmPassword: "",
         }
     })
+
     const dispatch = useDispatch();
 
     const handleChangePassword = (data) => {
-        console.log(data);
         dispatch(changePassword({ password: data.password, newPassword: data.newPassword }))
     }
 
@@ -31,8 +31,9 @@ const PasswordChanger = () => {
 
     const errosList = Object.entries(formState.errors);
     if (errosList.length) {
-        dispatch(handleError(errosList[0].message));
+        toast.error(errosList[0].message);
     }
+
     return (
         <div className="section">
             <section className="title-container">

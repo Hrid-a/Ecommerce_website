@@ -3,7 +3,7 @@ import { valibotResolver } from "@hookform/resolvers/valibot"
 import { useDispatch, useSelector } from "react-redux"
 import { updateUserSchema } from "../../utils/auth"
 import { useRef, useState } from "react"
-import { handleError, updateUser } from "../../redux/features/User/userSlice"
+import { updateUser } from "../../redux/features/User/userSlice"
 import { Toaster, toast } from "sonner"
 import { signUpInput } from "../../utils/data"
 import Input from "../Forms/Input"
@@ -37,13 +37,13 @@ const PublicProfile = () => {
         dispatch(updateUser(formData));
     }
 
-    if (isSuccess) {
+    if (isSuccess && message) {
         toast.success(message);
     }
 
     const errosList = Object.entries(formState.errors);
     if (errosList.length) {
-        dispatch(handleError(errosList[0].message));
+        toast.error(errosList[0].message);
     }
     return (
         <>

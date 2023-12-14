@@ -2,7 +2,6 @@ import { useRouteError } from "react-router-dom";
 
 const ErrorPage = () => {
     const { status, statusText } = useRouteError();
-    console.log(status, statusText);
     return (
         <div className="pageNotFound">
             <section className="contentWrapper">

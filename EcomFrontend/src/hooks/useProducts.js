@@ -4,6 +4,7 @@ import { req } from "../utils/axios";
 import { addToProducts } from "../redux/features/Product/productSlice";
 
 const useProducts = () => {
+
     const dispatch = useDispatch()
     useEffect(() => {
         const controller = new AbortController();

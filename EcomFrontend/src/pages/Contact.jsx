@@ -8,13 +8,10 @@ import { contactSchema } from "../utils/auth";
 import Textarea from "../components/Forms/Textarea";
 import { useForm } from "react-hook-form";
 import { valibotResolver } from "@hookform/resolvers/valibot";
-import { handleError } from "../redux/features/User/userSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 
 const Contact = () => {
-    const { loading, message } = useSelector(state => state.user);
-    const { register, handleSubmit, formState } = useForm({
+    const { register, handleSubmit, formState, reset } = useForm({
         resolver: valibotResolver(contactSchema),
         defaultValues: {
             email: "",
@@ -22,19 +19,17 @@ const Contact = () => {
             message: "",
         }
     });
-    const dispatch = useDispatch();
 
     const errorSchema = Object.values(formState.errors);
 
     if (errorSchema.length) {
-        dispatch(handleError(errorSchema[0].message))
-    } else {
-        dispatch(handleError(""));
+        toast.error(errorSchema[0].message);
     }
 
 
     const handleContactForm = () => {
         toast.success("The message was successfully sent.");
+        reset();
     };
 
     return (
@@ -76,7 +71,6 @@ const Contact = () => {
                     </section>
                     <div className="form">
                         <form onSubmit={handleSubmit(handleContactForm)}>
-                            {message && <span className="error">{message}</span>}
                             {contactInputs.map(input => {
                                 return (
                                     <Input key={input.id}
@@ -86,7 +80,7 @@ const Contact = () => {
                             })}
 
                             <Textarea register={register} label="message" />
-                            <Button loading={loading} className={"btn btn-ghost"} text={"send"} />
+                            <Button className={"btn btn-ghost"} text={"send"} />
                         </form>
                     </div>
                 </section>

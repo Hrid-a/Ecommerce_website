@@ -5,24 +5,16 @@ const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() => import('./pages/Login'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Support = lazy(() => import('./pages/Support'));
-const AdminDashboard = lazy(() => import('./pages/Admin/AdminDashboard'));
-const Dashboard = lazy(() => import('./components/Admin/Dashboard'));
-const Products = lazy(() => import('./components/Admin/Products'));
-const Users = lazy(() => import('./components/Admin/Users'));
-const Orders = lazy(() => import('./components/Admin/Orders'));
 const Signup = lazy(() => import('./pages/Signup'));
 const SingleProduct = lazy(() => import("./pages/SingleProduct"));
 const CartPage = lazy(() => import("./pages/CartPage"));
-const SingleProductPage = lazy(() => import("./pages/Admin/SingleProductPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 const ForgotPass = lazy(() => import("./pages/ForgotPass"));
 const Settings = lazy(() => import("./pages/Settings"));
 const ErrorPage = lazy(() => import('./components/404/ErrorPage'));
 
 
-
 import "./sass/main.scss";
-import { useSelector } from 'react-redux';
 import HomeSkelton from './skeleton/HomeSkelton';
 import ContactSkeleton from './skeleton/ContactSkeleton';
 import HelpSkeleton from './skeleton/HelpSkeleton';
@@ -31,11 +23,6 @@ import SingleProductSkeleton from './skeleton/SingleProductSkeleton';
 
 
 function App() {
-
-  const { user } = useSelector(store => store.user);
-
-
-
   const router = createBrowserRouter([
     {
       path: '/',
@@ -81,34 +68,6 @@ function App() {
           path: "/settings",
           element: <Suspense><Settings /></Suspense>
         },
-        {
-          path: "/admin",
-          element: <Suspense>{user && <AdminDashboard />}</Suspense>,
-          children: [
-            {
-              path: "/admin",
-              element: <Suspense> <Dashboard /> </Suspense>
-            }
-            ,
-            {
-              path: "/admin/products",
-              element: <Suspense> <Products /> </Suspense>
-            },
-            {
-              path: "/admin/users",
-              element: <Suspense> <Users /> </Suspense>
-            },
-            {
-              path: "/admin/orders",
-              element: <Suspense> <Orders /> </Suspense>
-            },
-            {
-              path: "/admin/product/:productId",
-              element: <Suspense> <SingleProductPage /> </Suspense>
-            }
-          ]
-        }
-
       ],
       errorElement: <Suspense>
         <ErrorPage />

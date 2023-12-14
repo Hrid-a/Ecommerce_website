@@ -5,7 +5,7 @@ import Textarea from "../Forms/Textarea";
 import { useForm } from "react-hook-form";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useDispatch, useSelector } from "react-redux";
-import { addReview, handleReviewError } from "../../redux/features/Product/reviewsSlice";
+import { addReview } from "../../redux/features/Product/reviewsSlice";
 import Button from "../Button";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useState } from "react";
@@ -38,9 +38,7 @@ const AddReview = ({ id }) => {
     // Change this to review
     const errors = Object.values(formState.errors);
     if (errors.length) {
-        dispatch(handleReviewError(errors[0].message));
-    } else {
-        dispatch(handleReviewError(""));
+        toast.error(errors[0].message);
     }
 
 
@@ -51,8 +49,8 @@ const AddReview = ({ id }) => {
                 <Toaster richColors position="top-center" />
                 <form onSubmit={handleSubmit(addReviews)}>
                     <p className="reviews__rating">
-                        {[1, 2, 3, 4, 5].map((item, index) => <span key={item}>{item <= Number(rating) ?
-                            <FaStar className="filled" onClick={() => setRating(index)} /> : <FaRegStar className="outlined" onClick={() => setRating(item)} />} </span>)}
+                        {[...Array(5)].map((item, index) => <span key={index + 1}>{index + 1 <= Number(rating) ?
+                            <FaStar className="filled" onClick={() => setRating(index)} /> : <FaRegStar className="outlined" onClick={() => setRating(index + 1)} />} </span>)}
                     </p>
                     <Textarea register={register} label="comment" />
                     <Button className="btn btn-primary" text="add" loading={loading} />

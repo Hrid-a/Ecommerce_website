@@ -62,7 +62,7 @@ function App() {
         },
         {
           path: "/password_reset",
-          element: <Suspense><ForgotPass /></Suspense>
+          element: <Suspense fallback={<Skeleton />}><ForgotPass /></Suspense>
         },
         {
           path: "/settings",

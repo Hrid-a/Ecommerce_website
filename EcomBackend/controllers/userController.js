@@ -83,7 +83,7 @@ exports.forgotPassword = apiPromise(async (req, res, next) => {
 
     try {
         await mailSend(user.email, subject, message);
-        res.status(200).send({ success: true, message: 'The email was sent successfully' });
+        res.status(200).send({ success: true, message: 'The email was sent successfully, check your inbox.' });
     }
     catch (e) {
         user.forgotPasswordToken = undefined;

@@ -44,7 +44,7 @@ const PasswordChanger = () => {
                 <Toaster richColors position="top-center" />
                 <form onSubmit={handleSubmit(handleChangePassword)}>
 
-                    {changePasswordInputs.map(input => <Input key={input.id} {...input} register={register} />)}
+                    {changePasswordInputs.map(input => <Input key={input.id}  {...input} register={register} />)}
 
                     <Button loading={loading} className="btn btn-primary" text="change password" />
                 </form>

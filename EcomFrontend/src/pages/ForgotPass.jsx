@@ -23,10 +23,13 @@ const ForgotPass = () => {
         dispatch(forgotPass({ email: data.email }));
     }
 
-    const errorsList = Object.entries(formState.errors);
+    const errorsList = Object.values(formState.errors);
     if (errorsList.length) {
         toast.error(errorsList[0].message)
     }
+
+
+
 
     return (
         <div className="section">

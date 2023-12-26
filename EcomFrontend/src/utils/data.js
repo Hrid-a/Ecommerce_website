@@ -39,6 +39,7 @@ export const changePasswordInputs = [
         label: "confirm New Password",
         name: "confirmPassword",
         type: "password",
+        disbled: true
     }
 ];
 

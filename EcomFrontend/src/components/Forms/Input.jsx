@@ -1,5 +1,5 @@
 
-const Input = ({ id, label, register, ...otherProps }) => {
+const Input = ({ id, label, register, disabled, ...otherProps }) => {
     return (
         <div className="form-group">
             <div className="form-fieldGroupLabel">
@@ -10,6 +10,7 @@ const Input = ({ id, label, register, ...otherProps }) => {
                     autoComplete="true"
                     {...otherProps}
                     {...register(id)}
+                    disabled
                 />
             </div>
         </div>

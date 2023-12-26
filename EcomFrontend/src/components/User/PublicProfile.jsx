@@ -57,7 +57,7 @@ const PublicProfile = () => {
                     <div className="flex">
                         <div className="inputs">
 
-                            {signUpInput.map(input => input.id !== "password" && <Input key={input.id} {...input} register={register} disabled={true} />)}
+                            {signUpInput.map(input => input.id !== "password" && <Input key={input.id} {...input} register={register} />)}
                         </div>
                         <div className="image-container">
                             <input type="file" name="image" ref={inputRef} className="input-file" onChange={handleChange} />

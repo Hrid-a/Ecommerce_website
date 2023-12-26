@@ -10,7 +10,7 @@ const Input = ({ id, label, register, disabled, ...otherProps }) => {
                     autoComplete="true"
                     {...otherProps}
                     {...register(id)}
-                    disabled
+                    {disabled ? disabled = "disabled" : ""}
                 />
             </div>
         </div>

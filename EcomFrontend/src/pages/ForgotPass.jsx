@@ -29,7 +29,7 @@ const ForgotPass = () => {
 
 
 
-    return isSuccess ? (
+    return !isSuccess ? (
         <div className="section">
             <section className="title-container">
                 <h2 className="title">Reset Your Password</h2>

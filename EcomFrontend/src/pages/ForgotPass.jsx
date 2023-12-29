@@ -6,18 +6,17 @@ import Button from "../components/Button"
 import { useDispatch, useSelector } from "react-redux"
 import { Toaster, toast } from "sonner"
 import { forgotPass } from "../redux/features/User/userSlice"
+import { Link } from "react-router-dom"
 
 const ForgotPass = () => {
-    const { error, isSuccess, message } = useSelector(state => state.user);
+    const { error, isSuccess } = useSelector(state => state.user);
     const { register, handleSubmit, formState } = useForm({
         resolver: valibotResolver(schema),
         values: { email: "" }
     })
     const dispatch = useDispatch();
 
-    if (isSuccess) {
-        toast.success(message)
-    }
+
 
     const forgotPassword = (data) => {
         dispatch(forgotPass({ email: data.email }));
@@ -30,8 +29,7 @@ const ForgotPass = () => {
 
 
 
-
-    return (
+    return isSuccess ? (
         <div className="section">
             <section className="title-container">
                 <h2 className="title">Reset Your Password</h2>
@@ -45,6 +43,18 @@ const ForgotPass = () => {
                     <Button className="btn btn-primary" text="send password reset email" />
                 </form>
             </section>
+        </div>
+    ) : (
+        <div>
+            <div className="section">
+                <section className="title-container">
+                    <h2 className="title">Check Your inbox</h2>
+                </section>
+                <section className="form password_confirm flow">
+                    <p>we have sent you an email in order to change you password.</p>
+                    <Link to={"/"} className="btn btn-primary">Go  back home</Link>
+                </section>
+            </div>
         </div>
     )
 }

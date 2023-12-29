@@ -5,7 +5,7 @@ import { updateUserSchema } from "../../utils/auth"
 import { useRef, useState } from "react"
 import { updateUser } from "../../redux/features/User/userSlice"
 import { Toaster, toast } from "sonner"
-import { signUpInput } from "../../utils/data"
+import { updateProfileInputs } from "../../utils/data"
 import Input from "../Forms/Input"
 import Button from "../Button"
 
@@ -57,7 +57,7 @@ const PublicProfile = () => {
                     <div className="flex">
                         <div className="inputs">
 
-                            {signUpInput.map(input => input.id !== "password" && <Input key={input.id} {...input} register={register} />)}
+                            {updateProfileInputs.map(input => <Input key={input.id} {...input} register={register} />)}
                         </div>
                         <div className="image-container">
                             <input type="file" name="image" ref={inputRef} className="input-file" onChange={handleChange} />
@@ -65,7 +65,7 @@ const PublicProfile = () => {
                             <span className="input-span" onClick={handleClick}>Edit</span>
                         </div>
                     </div>
-                    <Button loading={loading} className="btn btn-primary" text="updateProfile" />
+                    <Button loading={loading} className="btn btn-primary" text="update Profile" />
                 </form>
             </div>
         </>

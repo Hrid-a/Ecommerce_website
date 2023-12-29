@@ -39,7 +39,7 @@ export const changePasswordInputs = [
         label: "confirm New Password",
         name: "confirmPassword",
         type: "password",
-        disbled: true
+        disbled: "true"
     }
 ];
 
@@ -57,6 +57,19 @@ export const loginInputs = [
         type: "password"
     }
 ]
+
+export const updateProfileInputs = [
+    {
+        id: "firstName",
+        label: "first name",
+        name: "firstName"
+    },
+    {
+        id: "lastName",
+        label: "last name",
+        name: "lastName"
+    },
+];
 
 
 export const contactInputs = [

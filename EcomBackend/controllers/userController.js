@@ -14,16 +14,11 @@ exports.signup = apiPromise(async (req, res, next) => {
 
     if (req.files?.image) {
         const file = req.files.image;
-        const result = await
-            cloudinary.v2.uploader
-                .upload(file.tempFilePath, {
-                    folder: "users",
-                })
+        const result = await cloudinary.v2.uploader.upload(file.tempFilePath, {
+            folder: "users",
+        })
 
-        data.image = {
-            id: result.public_id,
-            url: result.secure_url
-        };
+        data.image = { id: result.public_id, url: result.secure_url };
     }
 
 
@@ -31,7 +26,7 @@ exports.signup = apiPromise(async (req, res, next) => {
 
     if (existingUser) return next(new CustomError("The user Already exists", 400));
     const user = await User.create(data);
-    // if (!user) return next(new CustomError("Unkonw Error", 500));
+    if (!user) return next(new CustomError("failed to create your account", 500));
 
     res.status(200).json({
         success: true, message: "The user has been created successfully", user
@@ -83,7 +78,7 @@ exports.forgotPassword = apiPromise(async (req, res, next) => {
 
     try {
         await mailSend(user.email, subject, message);
-        res.status(200).send({ success: true, message: 'The email was sent successfully, check your inbox.' });
+        res.status(200).send({ success: true, message: 'The email was sent successfully' });
     }
     catch (e) {
         user.forgotPasswordToken = undefined;

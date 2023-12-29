@@ -1,7 +1,7 @@
 
-const Button = ({ loading, className, text }) => {
+const Button = ({ loading, className, text, disabledBtn }) => {
     return (
-        <button type="submit" className={className}>
+        <button type="submit" className={className} style={{ pointerEvents: `${disabledBtn ? "none" : ""}` }} >
             {loading ? "Loading ..." : text}
         </button>
     )

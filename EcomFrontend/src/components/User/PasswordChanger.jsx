@@ -46,7 +46,7 @@ const PasswordChanger = () => {
 
                     {changePasswordInputs.map(input => <Input key={input.id}  {...input} register={register} />)}
 
-                    <Button loading={loading} className="btn btn-primary" text="change password" />
+                    <Button loading={loading} disabledBtn={true} className="btn btn-primary" text="change password" />
                 </form>
             </div>
         </div>
